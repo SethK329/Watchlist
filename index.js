@@ -15,6 +15,9 @@ if(searchButton){
         if(duplicateCheck===-1){
             console.log("not found, gonna add")
             addToWatchList(e.target.id)
+            addRemoveMessage(e.target, "add")
+        }else{
+            addRemoveMessage(e.target, "added")
         }
     })
 }
@@ -75,6 +78,15 @@ function addToWatchList(targetId){
         localStorage.setItem("watchlist", JSON.stringify(watchListArray))
 }
 
+function addRemoveMessage(target, state){
+    let copyMessage = document.createElement("span")
+    target.parentNode.appendChild(copyMessage)
+    const messageText = state === "add"? "Added to Watchlist!": state === "added"?"Already in Watchlist":"Removed from Watchlist";
+    copyMessage.innerText = messageText
+    setTimeout(()=>{
+        target.parentNode.removeChild(copyMessage)
+    }, 3000)
+}
 
 function render(data){
         movieListContainer.innerHTML += new MovieCard(data).getMovieCardHtml()
@@ -82,4 +94,4 @@ function render(data){
 
 
 
-export{render, MovieCard, watchListArray}
+export{render, MovieCard, addRemoveMessage}
