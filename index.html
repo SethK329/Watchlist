@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel ="stylesheet" href = "index.css">
+    <title>Movie Search & Watchlist</title>
+</head>
+<body>
+    <header>
+        <div class = "title-container">
+            <h1>Find your film</h1>
+            <a href="watchlist.html" class ="link">My Watchlist</a>
+        </div>
+        <div class ="search-container">
+            <input id = "searchInput" type ="text" placeholder="Search for a movie"></input>
+            <button for = "searchInput" id = "searchButton">Search</button>
+        </div>
+    </header>
+    <main id ="movieListContainer" class = "movie-list-container">
+        <img src = "Assets/no-data-initial.png"/>
+        <!-- movie search results added here -->
+    </main>
+</body>
+<script src="index.js" type="module"></script>
+</html>
