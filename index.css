@@ -75,10 +75,10 @@ header{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-top: 30dvh;
 }
 
 .initial-icon{
-    padding-top: 30dvh;
     text-align: center;
     color:#DFDDDD;
 }

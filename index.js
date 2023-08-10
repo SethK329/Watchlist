@@ -16,9 +16,7 @@ if(searchButton){
     movieListContainer.addEventListener("click", (e)=>{
         if(movieListArray.length>0){
             let duplicateCheck = watchListArray.findIndex(i=>i.imdbID ===`w${e.target.id}`)
-            console.log(duplicateCheck)
             if(duplicateCheck===-1){
-                console.log("not found, gonna add")
                 addToWatchList(e.target.id)
                 addOrRemoveMessage(e.target, "add")
             }else{
@@ -30,11 +28,10 @@ if(searchButton){
 
 
 
-function searchMovies(){
+async function searchMovies(){
     const userSearch = searchInput.value
-    fetch(`https://www.omdbapi.com/?apikey=eb95c66a&s=${userSearch}&page=${currentPage}`)
-    .then(res=>res.json())
-    .then(data=>{
+    const response = await fetch(`https://www.omdbapi.com/?apikey=eb95c66a&s=${userSearch}&page=${currentPage}`)
+    const data = await response.json()
         searchResults = data.Search
         movieListArray = []
         movieListContainer.innerHTML = ""
@@ -45,9 +42,7 @@ function searchMovies(){
               render(data)
             })
         
-    })
-
-}
+    }
 
 class MovieCard{
     constructor(data){
