@@ -1,6 +1,10 @@
 const searchButton = document.getElementById("searchButton")
 const searchInput = document.getElementById("searchInput")
 const movieListContainer = document.getElementById("movieListContainer")
+const minusSVG = {icon:"remove", 
+                  text:"Remove"}
+const plusSVG = {icon:"add", 
+                 text:"Watchlist"}
 let searchResults = []
 let movieListArray = []
 let watchListArray = []
@@ -10,14 +14,16 @@ if(searchButton){
     searchButton.addEventListener("click", searchMovies)
 
     movieListContainer.addEventListener("click", (e)=>{
-        let duplicateCheck = watchListArray.findIndex(i=>i.imdbID ===`w${e.target.id}`)
-        console.log(duplicateCheck)
-        if(duplicateCheck===-1){
-            console.log("not found, gonna add")
-            addToWatchList(e.target.id)
-            addRemoveMessage(e.target, "add")
-        }else{
-            addRemoveMessage(e.target, "added")
+        if(movieListArray.length>0){
+            let duplicateCheck = watchListArray.findIndex(i=>i.imdbID ===`w${e.target.id}`)
+            console.log(duplicateCheck)
+            if(duplicateCheck===-1){
+                console.log("not found, gonna add")
+                addToWatchList(e.target.id)
+                addOrRemoveMessage(e.target, "add")
+            }else{
+                addOrRemoveMessage(e.target, "added")
+            }
         }
     })
 }
@@ -50,7 +56,7 @@ class MovieCard{
 
     getMovieCardHtml() {
         const {imdbID, Poster, Title, imdbRating, Runtime, Genre, Plot} = this
-        const plusOrMinus = imdbID.charAt(0) === "w"? "minus-sign": "plus-sign";
+        const plusOrMinus = imdbID.charAt(0) === "w"? minusSVG : plusSVG;
         return `<section class = "movie-container">
                     <img src =${Poster}>
                     <div class = "text-container">
@@ -62,7 +68,7 @@ class MovieCard{
                         <div class = "info-container">
                             <p>${Runtime}</p>
                             <p>${Genre}</p>
-                            <button id =${imdbID} ><img class = "icon" src= "Assets/${plusOrMinus}.png"> Watchlist</button>
+                            <button id =${imdbID} class="${plusOrMinus.icon}">${plusOrMinus.text}</button>
                         </div>
                         <p>${Plot}</p>
                     </div>
@@ -78,14 +84,14 @@ function addToWatchList(targetId){
         localStorage.setItem("watchlist", JSON.stringify(watchListArray))
 }
 
-function addRemoveMessage(target, state){
+function addOrRemoveMessage(target, state){
     let copyMessage = document.createElement("span")
     target.parentNode.appendChild(copyMessage)
     const messageText = state === "add"? "Added to Watchlist!": state === "added"?"Already in Watchlist":"Removed from Watchlist";
     copyMessage.innerText = messageText
     setTimeout(()=>{
         target.parentNode.removeChild(copyMessage)
-    }, 3000)
+    }, 1500)
 }
 
 function render(data){
@@ -94,4 +100,4 @@ function render(data){
 
 
 
-export{render, MovieCard, addRemoveMessage}
+export{render, MovieCard}

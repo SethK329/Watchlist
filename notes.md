@@ -1,9 +1,8 @@
 // TO DO
 fix spacing between info sections
-make it into an SPA app to make locale storage variables easier to access
 get hero image
 font awsome icons are needed
-wire up locale storage to watchlist buttons, make a remove button
+add pages to search section
 
 
 
