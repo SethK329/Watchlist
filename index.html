@@ -13,7 +13,7 @@
             <a href="watchlist.html" class ="link">My Watchlist</a>
         </div>
         <div class ="search-container">
-            <input id = "searchInput" type ="text" placeholder="Search for a movie"></input>
+            <input id = "searchInput" type ="text" placeholder="Search for a movie title"></input>
             <button for = "searchInput" id = "searchButton">Search</button>
         </div>
     </header>
@@ -26,6 +26,13 @@
         </div>
         <!-- movie search results added here -->
     </main>
+    <footer>
+        <div class = "page-select" id = "pageSelect">
+            <button id = "backButton"> < </button>
+            <p id ="currentPage">Page: 0 of 0</p>
+            <button id = "forwardButton"> > </button>
+        </div>
+    </footer>
 </body>
 <script src="index.js" type="module"></script>
 </html>
