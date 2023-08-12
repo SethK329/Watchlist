@@ -46,20 +46,31 @@ function pageTurner(targetId){
 
 async function searchMovies(){
     const userSearch = searchInput.value
-    const response = await fetch(`https://www.omdbapi.com/?apikey=eb95c66a&s=${userSearch}&page=${currentPage}`)
-    const data = await response.json()
-        searchResults = data.Search
-        totalPages = data.totalResults
-        currentPageEl.innerText = `Page: ${currentPage} of ${Math.ceil(totalPages/10)}`
-        movieListArray = []
-        movieListContainer.innerHTML = ""
-            searchResults.forEach(async (element) => {
-              const res = await fetch(`https://www.omdbapi.com/?apikey=eb95c66a&i=${element.imdbID}`)
-              const data = await res.json()
-              movieListArray.push(data)
-              render(data)
-            })
-        
+    try{
+        const response = await fetch(`https://www.omdbapi.com/?apikey=eb95c66a&s=${userSearch}&page=${currentPage}`)
+        const data = await response.json()
+        console.log(data.Response)
+        if(data.Response ==='false'){
+            throw new Error("Movies not found")
+        }else{
+            searchResults = data.Search
+            totalPages = data.totalResults ? data.totalResults: 0;
+            currentPageEl.innerText = `Page: ${currentPage} of ${Math.ceil(totalPages/10)}`
+            movieListArray = []
+            movieListContainer.innerHTML = ""
+                searchResults.forEach(async (element) => {
+                  const res = await fetch(`https://www.omdbapi.com/?apikey=eb95c66a&i=${element.imdbID}`)
+                  const data = await res.json()
+                  movieListArray.push(data)
+                  render(data)
+                })
+        }
+    }catch(error){
+        movieListContainer.innerHTML = `
+        <div class = "initial-icon" >
+            <h3>Unable to find what you're looking for. Please try another search.</h3>
+        </div>`
+    }
     }
 
 class MovieCard{
@@ -75,7 +86,7 @@ class MovieCard{
                     <div class = "text-container">
                         <div class = "info-container">
                             <h3>${Title}</h3>
-                            <img class = "icon" src ="Assets/star-icon.png">
+                            <img class = "icon" src ="Assets/star-icon.png" alt="Poster of ${Title}">
                             <p>${imdbRating}</p>
                         </div>
                         <div class = "info-container">

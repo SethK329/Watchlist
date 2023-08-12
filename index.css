@@ -23,6 +23,23 @@ header{
     position: relative;
 }
 
+a,
+a:visited{
+    text-decoration: none;
+    color: inherit;
+}
+
+header::before{
+    content: "";
+    background-color: rgba(0, 0, 0, .5);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: -1;
+}
+
 .title-container > h1{
     font-size: 3rem;
     color: white;
@@ -55,13 +72,21 @@ header{
     background-size: 25px;
     background-position: 10px 50%;
     text-indent: 2.5rem;
+    border: white;
     border-right:none;
+}
+
+.search-container>input:focus{
+    outline: none;
+    border: black;
 }
 
 .search-container > button{
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     width: 30%;
+    font-size: 1rem;
+    border: white;
 }
 
 .title-container{
@@ -78,14 +103,21 @@ header{
     align-items: center;
 }
 
+.movie-list-container>h3{
+    padding-top: 20dvh;
+    color:#5c5c5c;
+
+}
+
 .initial-icon{
     text-align: center;
-    color:#DFDDDD;
+    color:#5c5c5c;
     padding-top: 20dvh;
 }
 
-main>h3{
-    padding-top: 30dvh;
+.initial-icon>p{
+    color: inherit;
+    font-size: 1.25rem;
 }
 
 .movie-container,
@@ -139,6 +171,7 @@ main>h3{
 .movie-container>img{
     max-width:100px;
     object-fit: cover;
+    box-shadow: 2px 4px 8px grey;
 }
 
 .info-container>button{
