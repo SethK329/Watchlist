@@ -21,7 +21,6 @@ header{
     justify-content: center;
     height: 200px;
     position: relative;
-    view-transition-name: main-header;
 }
 
 a,
@@ -103,7 +102,6 @@ header::before{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    view-transition-name: main;
 }
 
 .movie-list-container>h3{
