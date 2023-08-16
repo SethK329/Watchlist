@@ -21,6 +21,7 @@ header{
     justify-content: center;
     height: 200px;
     position: relative;
+    view-transition-name: main-header;
 }
 
 a,
@@ -74,6 +75,7 @@ header::before{
     text-indent: 2.5rem;
     border: white;
     border-right:none;
+    z-index: 2;
 }
 
 .search-container>input:focus{
@@ -101,12 +103,17 @@ header::before{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    view-transition-name: main;
 }
 
 .movie-list-container>h3{
     padding-top: 20dvh;
     color:#5c5c5c;
+    margin: .5rem 0;
+}
 
+.movie-list-container section:last-child{
+    margin-bottom: 40px;
 }
 
 .initial-icon{
@@ -132,6 +139,7 @@ header::before{
     margin-top: 30px;
     padding: 1rem 0;
     border-bottom: 2px solid grey;
+    width: 100%;
 }
 
 .text-container{
@@ -145,7 +153,6 @@ header::before{
     flex-direction: row;
     align-items: baseline;
     gap: .25rem;
-    flex-wrap: nowrap;
     color:#111827;
     font-size: 1rem;    
 }
@@ -153,6 +160,7 @@ header::before{
 .info-container>p{
     text-overflow: elipsis;
 }
+
 .info-container>span{
     position: absolute;
     left: 30%;
@@ -165,13 +173,17 @@ header::before{
 }
 
 .info-container>*:not(img){
-    margin-right: 1.5rem;
+    margin-right: .5rem;
 }
 
 .movie-container>img{
-    max-width:100px;
+    width:100px;
     object-fit: cover;
     box-shadow: 2px 4px 8px grey;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border-radius: 3px;
+    
 }
 
 .info-container>button{
@@ -181,7 +193,7 @@ header::before{
     background-position: 5px 45%;
     background-repeat: no-repeat;
     background-size: 1em;
-    margin-left: 2rem;
+    margin-left: 1rem;
     padding: .25rem .5rem;
     align-items: baseline;
     text-indent: 1rem;
@@ -205,20 +217,20 @@ a>svg,
     transform: translateY(15%);
 }
 
-footer>div.page-select{
+.page-select{
     display: flex;
-    margin: auto;
+    margin: 0 auto;
+    padding-bottom: .5rem;
     justify-content: center;
     position: fixed;
     bottom: 0;
     width: 550px;
     background-color: #f5f5f5;
-    box-sizing: border-box;
     font-size: 1.25rem;
-    align-items:center;
+    align-items: center;
 }
 
-footer>div.page-select>button{
+.page-select>button{
     padding: .25rem;
     border-radius: 50%;
     width: 1.5rem;
@@ -240,3 +252,5 @@ button:active{
     background-color:#111827;
     color: #f5f5f5;
 }
+
+  

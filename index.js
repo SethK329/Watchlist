@@ -3,19 +3,23 @@ const searchInput = document.getElementById("searchInput")
 const movieListContainer = document.getElementById("movieListContainer")
 const currentPageEl = document.getElementById("currentPage")
 const pageSelectEl = document.getElementById("pageSelect")
+
 const minusSVG = {icon:"remove", 
                   text:"Remove"}
+
 const plusSVG = {icon:"add", 
                  text:"Watchlist"}
+
 let searchResults = []
 let movieListArray = []
-let watchListArray = []
+let watchListArray = JSON.parse(localStorage.getItem("watchlist")) || []
 let currentPage = 1
 let totalPages = 0
 
 if(searchButton){
     searchButton.addEventListener("click", searchMovies)
-
+    searchInput.addEventListener("keydown", (e)=> {if(e.key ==='Enter'){searchMovies()}})
+    
     movieListContainer.addEventListener("click", (e)=>{
         if(movieListArray.length>0){
             let duplicateCheck = watchListArray.findIndex(i=>i.imdbID ===`w${e.target.id}`)
@@ -131,7 +135,7 @@ function searchChangeReset(){
 }
 
 function render(data){
-        movieListContainer.innerHTML += new MovieCard(data).getMovieCardHtml()
+    movieListContainer.innerHTML += new MovieCard(data).getMovieCardHtml()
 }
 
 
