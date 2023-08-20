@@ -86,11 +86,11 @@ class MovieCard{
         const {imdbID, Poster, Title, imdbRating, Runtime, Genre, Plot} = this
         const plusOrMinus = imdbID.charAt(0) === "w"? minusSVG : plusSVG;
         return `<section class = "movie-container">
-                    <img src =${Poster}>
+                    <img src =${Poster} alt = "Poster of ${Title}">
                     <div class = "text-container">
                         <div class = "info-container">
                             <h3>${Title}</h3>
-                            <img class = "icon" src ="Assets/star-icon.png" alt="Poster of ${Title}">
+                            <img class = "icon" src ="Assets/icon.png">
                             <p>${imdbRating}</p>
                         </div>
                         <div class = "info-container">
