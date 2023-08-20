@@ -21,7 +21,7 @@ if(searchButton){
     searchInput.addEventListener("keydown", (e)=> {if(e.key ==='Enter'){searchMovies()}})
     
     movieListContainer.addEventListener("click", (e)=>{
-        if(movieListArray.length>0){
+        if(movieListArray.length>0 && e.target.id){
             let duplicateCheck = watchListArray.findIndex(i=>i.imdbID ===`w${e.target.id}`)
             if(duplicateCheck===-1){
                 addToWatchList(e.target.id)
@@ -53,12 +53,11 @@ async function searchMovies(){
     try{
         const response = await fetch(`https://www.omdbapi.com/?apikey=eb95c66a&s=${userSearch}&page=${currentPage}`)
         const data = await response.json()
-        console.log(data.Response)
         if(data.Response ==='false'){
             throw new Error("Movies not found")
         }else{
             searchResults = data.Search
-            totalPages = data.totalResults ? data.totalResults: 0;
+            totalPages = data.totalResults || 0;
             currentPageEl.innerText = `Page: ${currentPage} of ${Math.ceil(totalPages/10)}`
             movieListArray = []
             movieListContainer.innerHTML = ""

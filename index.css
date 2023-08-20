@@ -1,6 +1,6 @@
 
 
-*,html, body{
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -71,7 +71,7 @@ header::before{
 }
 
 .search-container{
-    width: 80%;
+    width: 85%;
     display: flex;
     position: absolute;
     bottom: 0px;
@@ -112,7 +112,7 @@ header::before{
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    width: 80%;
+    width: 85%;
 }
 
 .movie-list-container{
@@ -120,6 +120,7 @@ header::before{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0 .25rem;
 }
 
 .movie-list-container>h3{
@@ -147,7 +148,6 @@ header::before{
 .info-container,
 .text-container{
     display: flex;
-    max-height: 250px;
 }
 
 .movie-container{
@@ -164,16 +164,24 @@ header::before{
     position: relative;
 }
 
+.text-container>p{
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.text-container>p:hover{
+    max-height:max-content;
+    overflow: visible;
+    text-overflow:unset;
+    white-space: wrap;
+}
+
 .info-container{
     flex-direction: row;
     align-items: baseline;
     gap: .25rem;
     color:#111827;
     font-size: 1rem;    
-}
-
-.info-container{
-    text-overflow: elipsis;
 }
 
 .info-container>span{
@@ -197,7 +205,7 @@ header::before{
     box-shadow: 2px 4px 8px grey;
     flex-shrink: 0;
     flex-grow: 0;
-    border-radius: 3px;
+    border-radius: 2px;
     
 }
 
@@ -262,5 +270,9 @@ button:active{
 @media (max-width: 549px) {
     .page-select{
         width: 100%;    
+    }
+
+    .body{
+        max-width: 90dvh;
     }
   }
